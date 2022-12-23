@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { trpc } from "../utils/trpc";
+import { trpc } from "@/utils/trpc";
 import "../styles/globals.css";
 import {
   type Session,
@@ -7,7 +7,9 @@ import {
 } from "@supabase/auth-helpers-react";
 import { useState } from "react";
 import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Header } from "../components/Header";
+import { Header } from "@/components/Header";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function MyApp({
   Component,
@@ -16,14 +18,20 @@ function MyApp({
   initialSession: Session;
 }>) {
   const [supabase] = useState(() => createBrowserSupabaseClient());
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <SessionContextProvider
       supabaseClient={supabase}
       initialSession={pageProps.initialSession}
     >
-      <Header />
-      <Component {...pageProps} />
+      <QueryClientProvider client={queryClient}>
+        <Header />
+        <main className="container mx-auto">
+          <Component {...pageProps} />
+        </main>
+        {process.env.NODE_ENV === "development" ? <ReactQueryDevtools /> : null}
+      </QueryClientProvider>
     </SessionContextProvider>
   );
 }
