@@ -35,7 +35,7 @@ export function ActiveRow({
       } else if (
         key >= "a" &&
         key <= "z" &&
-        localGuess.length < (game.word_length || 0)
+        localGuess.length < game.word_length
       ) {
         setLocalGuess((guess) => guess + key);
       }

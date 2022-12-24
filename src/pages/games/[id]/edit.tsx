@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import type { Insert } from "@/api/games";
 import { useGetGame, useUpdateGame } from "@/api/games";
 
 export default function ClientEdit() {
@@ -10,8 +9,12 @@ export default function ClientEdit() {
 
   const { data, isLoading, error } = useGetGame(id, Infinity);
 
-  const { register, handleSubmit } = useForm<Insert>({
-    values: data,
+  const { register, handleSubmit } = useForm({
+    values: {
+      ...data,
+      players: data?.players.join(", "),
+      word: data?.word || "",
+    },
   });
 
   // set up mutation
@@ -23,11 +26,18 @@ export default function ClientEdit() {
   }
 
   const onSubmit = handleSubmit((formData) => {
-    mutation.mutate(formData, {
-      onSuccess({ id }) {
-        router.push(`/games/${id}`);
+    mutation.mutate(
+      {
+        ...formData,
+        players:
+          formData?.players?.split(",")?.map((player) => player.trim()) ?? [],
       },
-    });
+      {
+        onSuccess({ id }) {
+          router.push(`/games/${id}`);
+        },
+      }
+    );
   });
 
   return (
@@ -36,12 +46,17 @@ export default function ClientEdit() {
       <form onSubmit={onSubmit} className="flex flex-col">
         <label>
           Word
-          <input type="text" {...register("word")} />
+          <input type="text" {...register("word", { required: true })} />
         </label>
 
         <label>
           Hint
           <input type="text" {...register("hint")} />
+        </label>
+
+        <label>
+          Players
+          <input type="text" {...register("players")} />
         </label>
 
         <button

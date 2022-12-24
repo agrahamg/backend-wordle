@@ -20,9 +20,9 @@ export default function IndexItem() {
     <div className="prose">
       <h1>Play</h1>
 
-      <div>word: {game.word_length}</div>
+      <div>Word Length: {game.word_length}</div>
 
-      <div>hint: {game.hint}</div>
+      <div>Hint: {game.hint}</div>
 
       <div className="flex flex-col items-start gap-1">
         {Array.from({ length: 6 }).map((_, i) => {
@@ -35,6 +35,7 @@ export default function IndexItem() {
           if (!guess && !isFinished && (i === 0 || serverGuesses[i - 1])) {
             return <ActiveRow game={game} key={i} />;
           }
+
           return <Row length={game.word_length} key={i} />;
         })}
       </div>

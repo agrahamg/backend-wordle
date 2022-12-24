@@ -48,11 +48,19 @@ export function useGetGame(id?: string, staleTime = 60) {
 export type Insert = Database["public"]["Tables"][typeof tableName]["Insert"];
 
 export function useUpdateGame() {
+  const queryClient = useQueryClient();
   const supabase = useSupabaseClient<Database>();
 
-  return useMutation(async (update: Insert) => {
-    return throwOnNoData(
-      supabase.from(tableName).upsert(update).select("id").single()
-    );
-  });
+  return useMutation(
+    async (update: Insert) => {
+      return throwOnNoData(
+        supabase.from(tableName).upsert(update).select().single()
+      );
+    },
+    {
+      onSuccess(data) {
+        queryClient.setQueryData([...queryKey, data.id.toString()], data);
+      },
+    }
+  );
 }

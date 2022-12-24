@@ -10,7 +10,7 @@ export function checkLetters([...word]: string, [...guess]: string) {
         letterCounts[letter] -= 1;
         return "🟩";
       }
-      return "";
+      return letter;
     })
     .map((letter) => {
       if (letter === "🟩") {
