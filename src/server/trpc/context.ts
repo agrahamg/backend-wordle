@@ -1,10 +1,13 @@
 import { type inferAsyncReturnType } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "@/database.types";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Replace this with an object if you want to pass things to createContextInner
  */
-type CreateContextOptions = Record<string, never>;
+type CreateContextOptions = { supabase: SupabaseClient<Database> };
 
 /** Use this helper for:
  * - testing, so we dont have to mock Next.js' req/res
@@ -12,7 +15,7 @@ type CreateContextOptions = Record<string, never>;
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
 export const createContextInner = async (opts: CreateContextOptions) => {
-  return {};
+  return opts;
 };
 
 /**
@@ -20,7 +23,8 @@ export const createContextInner = async (opts: CreateContextOptions) => {
  * @link https://trpc.io/docs/context
  **/
 export const createContext = async (opts: CreateNextContextOptions) => {
-  return await createContextInner({});
+  const supabase = createServerSupabaseClient<Database>(opts);
+  return await createContextInner({ supabase });
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;

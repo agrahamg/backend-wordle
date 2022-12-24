@@ -14,7 +14,7 @@ export interface Database {
           created_at: string;
           hint: string | null;
           id: number;
-          players: string[] | null;
+          players: string[];
           user_id: string;
           word: string;
         };
@@ -22,7 +22,7 @@ export interface Database {
           created_at?: string;
           hint?: string | null;
           id?: number;
-          players?: string[] | null;
+          players?: string[];
           user_id?: string;
           word: string;
         };
@@ -30,13 +30,14 @@ export interface Database {
           created_at?: string;
           hint?: string | null;
           id?: number;
-          players?: string[] | null;
+          players?: string[];
           user_id?: string;
           word?: string;
         };
       };
       guesses: {
         Row: {
+          answer_key: string[];
           attempt: number;
           correct: boolean;
           created_at: string;
@@ -45,6 +46,7 @@ export interface Database {
           user_id: string;
         };
         Insert: {
+          answer_key: string[];
           attempt?: number;
           correct?: boolean;
           created_at?: string;
@@ -53,6 +55,7 @@ export interface Database {
           user_id?: string;
         };
         Update: {
+          answer_key?: string[];
           attempt?: number;
           correct?: boolean;
           created_at?: string;

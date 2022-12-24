@@ -15,12 +15,6 @@ export default function Games() {
       <div>
         <h1>Play</h1>
         <p>Play games others have created</p>
-        <Link
-          href={"/games/new/edit"}
-          className="rounded border bg-blue-400 p-1"
-        >
-          new
-        </Link>
       </div>
       <table>
         <thead>

@@ -21,7 +21,7 @@ export default function IndexItem() {
 
       <div>hint: {data.hint}</div>
 
-      <div>hint: {data.players}</div>
+      <div>players: {data.players.join(", ")}</div>
 
       <Link href={path + "/edit"} className="rounded border bg-blue-400 p-1">
         edit
