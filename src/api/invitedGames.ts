@@ -1,25 +1,25 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import type { Database } from "@/database.types";
 import { throwOnNoData } from "@/api/utils";
 
-const tableName = "games";
+const tableName = "invited_games";
 
 const queryKey = [tableName];
 
-function getSingle<T>(supabase: SupabaseClient<T>, id?: string) {
-  return supabase.from(tableName).select().eq("id", id).throwOnError().single();
+function getSingle(supabase: SupabaseClient<Database>, id?: string) {
+  return supabase.from(tableName).select().eq("id", id).single();
 }
 
 function getMultiple(supabase: SupabaseClient<Database>) {
   return supabase
-    .from(tableName)
+    .from("invited_games")
     .select()
     .order("created_at", { ascending: false });
 }
 
-export function useGetGames() {
+export function useGetInvitedGames() {
   const queryClient = useQueryClient();
   const supabase = useSupabaseClient<Database>();
 
@@ -32,7 +32,7 @@ export function useGetGames() {
   });
 }
 
-export function useGetGame(id?: string, staleTime = 60) {
+export function useGetInvitedGame(id?: string, staleTime = 60) {
   const supabase = useSupabaseClient<Database>();
 
   return useQuery(
@@ -43,16 +43,4 @@ export function useGetGame(id?: string, staleTime = 60) {
       staleTime,
     }
   );
-}
-
-export type Insert = Database["public"]["Tables"][typeof tableName]["Insert"];
-
-export function useUpdateGame() {
-  const supabase = useSupabaseClient<Database>();
-
-  return useMutation(async (update: Insert) => {
-    return throwOnNoData(
-      supabase.from(tableName).upsert(update).select("id").single()
-    );
-  });
 }

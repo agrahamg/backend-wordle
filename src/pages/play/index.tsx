@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { usePathname } from "next/dist/client/components/navigation";
-import { useGetGames } from "@/api/games";
+import { useGetInvitedGames } from "@/api/invitedGames";
 
 export default function Games() {
   const pathname = usePathname();
 
-  const { data, isLoading, error } = useGetGames();
+  const { data, isLoading, error } = useGetInvitedGames();
 
   if (isLoading) return "Loading...";
   if (error) return "An error has occurred: ";
@@ -13,8 +13,8 @@ export default function Games() {
   return (
     <div className="prose">
       <div>
-        <h1>Games</h1>
-        <p>Create games for others to play</p>
+        <h1>Play</h1>
+        <p>Play games others have created</p>
         <Link
           href={"/games/new/edit"}
           className="rounded border bg-blue-400 p-1"
@@ -36,7 +36,7 @@ export default function Games() {
               <td>{obj.id}</td>
               <td>{obj.created_at}</td>
               <td>
-                <Link href={`${pathname}/${obj.id}`}>{obj.word}</Link>
+                <Link href={`${pathname}/${obj.id}`}>{obj.word_length}</Link>
               </td>
             </tr>
           ))}

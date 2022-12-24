@@ -13,7 +13,8 @@ export function Header() {
         <Link href="/">Wordle</Link>
         {user ? (
           <>
-            <Link href="/games">Games</Link>
+            <Link href="/games">Created Games</Link>
+            <Link href="/play">Playable Games</Link>
           </>
         ) : null}
       </div>
