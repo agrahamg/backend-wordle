@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useGetGame, useUpdateGame } from "@/api/games";
+import { InputGroup } from "@/components/InputGroup";
+import { Button } from "@/components/Button";
 
 export default function ClientEdit() {
   //get the data
@@ -43,29 +45,23 @@ export default function ClientEdit() {
   return (
     <div className="prose">
       <h1>This is an update</h1>
-      <form onSubmit={onSubmit} className="flex flex-col">
-        <label>
-          Word
-          <input type="text" {...register("word", { required: true })} />
-        </label>
+      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+        <InputGroup
+          label="Word"
+          type="text"
+          {...register("word", { required: true })}
+        />
 
-        <label>
-          Hint
-          <input type="text" {...register("hint")} />
-        </label>
+        <InputGroup label="Hint" type="text" {...register("hint")} />
 
-        <label>
-          Players
-          <input type="text" {...register("players")} />
-        </label>
+        <InputGroup label="Players" type="text" {...register("players")} />
 
-        <button
-          type="submit"
-          className="rounded border bg-blue-400 p-1"
-          disabled={mutation.isLoading}
-        >
-          Submit
-        </button>
+        <div className="flex justify-end">
+          <Button type="submit" disabled={mutation.isLoading}>
+            Submit
+          </Button>
+        </div>
+
         {mutation.isLoading ? "loading" : null}
       </form>
     </div>
