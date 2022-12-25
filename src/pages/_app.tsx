@@ -27,7 +27,7 @@ function MyApp({
     >
       <QueryClientProvider client={queryClient}>
         <Header />
-        <main className="container mx-auto">
+        <main className="container mx-auto flex justify-center pt-5">
           <Component {...pageProps} />
         </main>
         {process.env.NODE_ENV === "development" ? <ReactQueryDevtools /> : null}
