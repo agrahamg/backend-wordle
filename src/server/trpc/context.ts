@@ -1,8 +1,8 @@
 import { type inferAsyncReturnType } from "@trpc/server";
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { Database } from "@/database.types";
-import { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/database.types";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Replace this with an object if you want to pass things to createContextInner

@@ -15,24 +15,21 @@ export const guessesRouter = router({
         env.SUPABASE_SERVICE_KEY
       );
 
-      const { data: game } = await serviceClient
-        .from("games")
-        .select("word, id")
-        .eq("id", input.id)
-        .throwOnError()
-        .single();
+      const [{ data: game }, { data: guesses }] = await Promise.all([
+        serviceClient
+          .from("games")
+          .select("word, id")
+          .eq("id", input.id)
+          .throwOnError()
+          .single(),
+        supabase
+          .from("guesses")
+          .select("attempt")
+          .eq("game_id", input.id)
+          .throwOnError(),
+      ]);
 
-      if (game === null) {
-        throw Error("No record found");
-      }
-
-      const { data: guesses } = await supabase
-        .from("guesses")
-        .select("attempt")
-        .eq("game_id", game.id)
-        .throwOnError();
-
-      if (guesses === null) {
+      if (!game || !guesses) {
         throw Error("No record found");
       }
 
