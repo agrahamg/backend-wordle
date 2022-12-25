@@ -1,11 +1,14 @@
 import Cell from "@/components/Cell";
 import { memo } from "react";
+import { Loading } from "@/components/Loading";
 
 export function Row({
+  loading = false,
   length,
   guess,
   answer_key,
 }: {
+  loading?: boolean;
   length: number;
   guess?: string;
   answer_key?: string[];
@@ -16,10 +19,11 @@ export function Row({
   }));
 
   return (
-    <div className="flex gap-1">
+    <div className="flex items-center gap-1">
       {guessArray.map((item, i) => (
         <Cell {...item} key={i} />
       ))}
+      {loading ? <Loading /> : <span style={{ width: "40px" }} />}
     </div>
   );
 }

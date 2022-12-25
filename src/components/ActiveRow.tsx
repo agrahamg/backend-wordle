@@ -45,5 +45,11 @@ export function ActiveRow({
     return () => window.removeEventListener("keydown", handleKeyUp);
   }, [setLocalGuess, localGuess, game, mutation]);
 
-  return <Row length={game.word_length} guess={localGuess} />;
+  return (
+    <Row
+      length={game.word_length}
+      guess={localGuess}
+      loading={mutation.isLoading}
+    />
+  );
 }

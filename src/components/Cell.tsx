@@ -9,16 +9,18 @@ function Cell({
 }) {
   let color = "unset";
   if (answer_key === "🟩") {
-    color = "green";
+    color = "#6aaa64";
   } else if (answer_key === "🟨") {
-    color = "yellow";
+    color = "#c9b458";
   } else if (answer_key === "⬜️") {
-    color = "gray";
+    color = "#787c7e";
   }
 
   return (
     <div
-      className="flex items-center justify-center border border-gray-500"
+      className={`${
+        answer_key ? "text-white" : " "
+      } flex items-center justify-center border-2 border-gray-300 font-bold capitalize `}
       style={{ width: "54px", height: "54px", backgroundColor: color }}
     >
       {letter}
