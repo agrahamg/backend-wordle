@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/dist/client/components/navigation";
 import { useGetGames } from "@/api/games";
+import { formatDistanceToNow, parseISO } from "date-fns";
 
 export default function Games() {
   const pathname = usePathname();
@@ -25,19 +26,19 @@ export default function Games() {
       <table>
         <thead>
           <tr>
-            <th>id</th>
-            <th>createdAt</th>
-            <th>name</th>
+            <th>Created</th>
+            <th>Word</th>
+            <th>Hint</th>
           </tr>
         </thead>
         <tbody>
           {data?.map((obj) => (
             <tr key={obj.id}>
-              <td>{obj.id}</td>
-              <td>{obj.created_at}</td>
+              <td>{formatDistanceToNow(parseISO(obj.created_at))}</td>
               <td>
                 <Link href={`${pathname}/${obj.id}`}>{obj.word}</Link>
               </td>
+              <td>{obj.hint}</td>
             </tr>
           ))}
         </tbody>
