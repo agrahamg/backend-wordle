@@ -68,13 +68,16 @@ function Login() {
   }
 
   return (
-    <button
-      onClick={() => {
-        supabase.auth.signOut();
-        router.push("/");
-      }}
-    >
-      logout
-    </button>
+    <div className="flex gap-1">
+      <div>{user.email}</div>
+      <button
+        onClick={() => {
+          supabase.auth.signOut();
+          router.push("/");
+        }}
+      >
+        logout
+      </button>
+    </div>
   );
 }

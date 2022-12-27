@@ -1,15 +1,17 @@
 import { useRouter } from "next/router";
 import { useGetInvitedGame } from "@/api/invitedGames";
-import { useGetGuesses } from "@/api/guesses";
+import { useGetMyGuesses } from "@/api/guesses";
 import Row from "@/components/Row";
 import { ActiveRow } from "@/components/ActiveRow";
+import { OtherPlayers } from "@/components/OtherPlayers";
 
 export default function IndexItem() {
   const router = useRouter();
   const id = router.query.id?.toString();
 
   const { data: game, isLoading, error } = useGetInvitedGame(id);
-  const { data: serverGuesses, isLoading: guessesLoading } = useGetGuesses(id);
+  const { data: serverGuesses, isLoading: guessesLoading } =
+    useGetMyGuesses(id);
 
   if (isLoading || guessesLoading) return "Loading...";
   if (error || !game || !serverGuesses) return "An error has occurred: ";
@@ -39,6 +41,8 @@ export default function IndexItem() {
           return <Row length={game.word_length} key={i} />;
         })}
       </div>
+
+      <OtherPlayers id={game.id} />
     </div>
   );
 }

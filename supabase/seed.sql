@@ -1,0 +1,20 @@
+
+INSERT INTO auth.users VALUES ('00000000-0000-0000-0000-000000000000', 'c1ec9936-268c-4a3d-aa9b-3a6ca2884371', 'authenticated', 'authenticated', 'c@c.com', '$2a$10$2NJAjKSS9MJsoDzAVp7YMe9nN4qe3j5F/frxdSmHc9gUvB2dRsZwq', '2022-12-27 03:26:52.033352+00', NULL, '', NULL, '', NULL, '', '', NULL, '2022-12-27 03:26:52.034383+00', '{"provider": "email", "providers": ["email"]}', '{}', NULL, '2022-12-27 03:26:52.031293+00', '2022-12-27 03:26:52.035274+00', NULL, NULL, '', '', NULL, DEFAULT, '', 0, NULL, '', NULL);
+INSERT INTO auth.users VALUES ('00000000-0000-0000-0000-000000000000', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', 'authenticated', 'authenticated', 'a@a.com', '$2a$10$r7X0qoNORGR9AWy64lF8gutLDz9swVsIgGZt38dOxuAwXQgMxmbay', '2022-12-27 03:25:12.990829+00', NULL, '', NULL, '', NULL, '', '', NULL, '2022-12-27 03:44:58.76853+00', '{"provider": "email", "providers": ["email"]}', '{}', NULL, '2022-12-27 03:25:12.986449+00', '2022-12-27 03:44:58.769876+00', NULL, NULL, '', '', NULL, DEFAULT, '', 0, NULL, '', NULL);
+INSERT INTO auth.users VALUES ('00000000-0000-0000-0000-000000000000', 'd854a957-36d7-409a-ae46-22a1a638f439', 'authenticated', 'authenticated', 'b@b.com', '$2a$10$O6n8G6zDmESLC1oUcsADlenbhYG1hXxwrvHcXxoJ23Rr5m.6Tgul6', '2022-12-27 03:25:27.714739+00', NULL, '', NULL, '', NULL, '', '', NULL, '2022-12-27 03:45:42.935226+00', '{"provider": "email", "providers": ["email"]}', '{}', NULL, '2022-12-27 03:25:27.712656+00', '2022-12-27 03:45:42.936245+00', NULL, NULL, '', '', NULL, DEFAULT, '', 0, NULL, '', NULL);
+
+INSERT INTO auth.identities VALUES ('fa48ca3a-b793-4e46-b14c-4d988b78fc09', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', '{"sub": "fa48ca3a-b793-4e46-b14c-4d988b78fc09"}', 'email', '2022-12-27 03:25:12.989818+00', '2022-12-27 03:25:12.989847+00', '2022-12-27 03:25:12.989848+00');
+INSERT INTO auth.identities VALUES ('d854a957-36d7-409a-ae46-22a1a638f439', 'd854a957-36d7-409a-ae46-22a1a638f439', '{"sub": "d854a957-36d7-409a-ae46-22a1a638f439"}', 'email', '2022-12-27 03:25:27.713953+00', '2022-12-27 03:25:27.71397+00', '2022-12-27 03:25:27.713971+00');
+INSERT INTO auth.identities VALUES ('c1ec9936-268c-4a3d-aa9b-3a6ca2884371', 'c1ec9936-268c-4a3d-aa9b-3a6ca2884371', '{"sub": "c1ec9936-268c-4a3d-aa9b-3a6ca2884371"}', 'email', '2022-12-27 03:26:52.032594+00', '2022-12-27 03:26:52.032613+00', '2022-12-27 03:26:52.032614+00');
+
+INSERT INTO public.games VALUES (1, '2022-12-27 03:43:52.718683+00', 'birds', 'c1ec9936-268c-4a3d-aa9b-3a6ca2884371', 'they fly', '{a@a.com,b@b.com,c@c.com}');
+INSERT INTO public.games VALUES (2, '2022-12-27 20:52:55.334613+00', 'groundhog', 'd854a957-36d7-409a-ae46-22a1a638f439', 'it digs', '{a@a.com,c@c.com}');
+
+INSERT INTO public.guesses VALUES (1, '2022-12-27 03:45:18.962835+00', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', 1, 'plane', false, '{⬜️,⬜️,⬜️,⬜️,⬜️}');
+INSERT INTO public.guesses VALUES (2, '2022-12-27 03:45:32.533949+00', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', 1, 'batts', false, '{🟩,⬜️,⬜️,⬜️,🟩}');
+INSERT INTO public.guesses VALUES (1, '2022-12-27 03:48:17.121457+00', 'd854a957-36d7-409a-ae46-22a1a638f439', 1, 'beess', false, '{🟩,⬜️,⬜️,⬜️,🟩}');
+INSERT INTO public.guesses VALUES (2, '2022-12-27 03:48:26.974131+00', 'd854a957-36d7-409a-ae46-22a1a638f439', 1, 'flies', false, '{⬜️,⬜️,🟨,⬜️,🟩}');
+INSERT INTO public.guesses VALUES (3, '2022-12-27 17:11:52.133829+00', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', 1, 'birds', true, '{🟩,🟩,🟩,🟩,🟩}');
+INSERT INTO public.guesses VALUES (1, '2022-12-27 20:53:24.605732+00', 'fa48ca3a-b793-4e46-b14c-4d988b78fc09', 2, 'dogssssss', false, '{🟨,🟨,🟨,⬜️,⬜️,⬜️,⬜️,⬜️,⬜️}');
+INSERT INTO public.guesses VALUES (1, '2022-12-27 20:54:20.896683+00', 'c1ec9936-268c-4a3d-aa9b-3a6ca2884371', 2, 'groundhod', false, '{🟩,🟩,🟩,🟩,🟩,🟩,🟩,🟩,⬜️}');
+INSERT INTO public.guesses VALUES (2, '2022-12-27 20:54:22.959015+00', 'c1ec9936-268c-4a3d-aa9b-3a6ca2884371', 2, 'groundhog', true, '{🟩,🟩,🟩,🟩,🟩,🟩,🟩,🟩,🟩}');

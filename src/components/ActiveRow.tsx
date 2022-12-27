@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { type Database } from "@/database.types";
-import { trpc } from "@/utils/trpc";
-import { useQueryClient } from "@tanstack/react-query";
 import { Row } from "@/components/Row";
+import { useMakeGuess } from "@/api/guesses";
 
 export function ActiveRow({
   game,
@@ -11,16 +10,7 @@ export function ActiveRow({
 }) {
   const [localGuess, setLocalGuess] = useState("");
 
-  const queryClient = useQueryClient();
-  const mutation = trpc.guesses.guess.useMutation({
-    onSuccess(data) {
-      const queryKey = ["guesses", game.id.toString()];
-      const queryData = queryClient.getQueryData(queryKey);
-      if (Array.isArray(queryData)) {
-        queryClient.setQueryData(queryKey, [...queryData, data]);
-      }
-    },
-  });
+  const mutation = useMakeGuess(game?.id?.toString());
 
   useEffect(() => {
     const handleKeyUp = async ({ key }: KeyboardEvent) => {
