@@ -24,7 +24,7 @@ export function OtherPlayers({ id }: { id: number }) {
   }, {} as Record<string, Guess[]>);
 
   return (
-    <div className="pt-5">
+    <div>
       <h1>Other Players</h1>
       {Object.entries(foo).map(([user_id, guesses]) => (
         <OtherPlayer key={user_id} guesses={guesses} user_id={user_id} />
