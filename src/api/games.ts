@@ -39,7 +39,7 @@ export function useGetGame(id?: string, staleTime = 60) {
     [...queryKey, id],
     async () => throwOnNoData(getSingle(supabase, id)),
     {
-      enabled: !!id,
+      enabled: !!id && id !== "new",
       staleTime,
     }
   );

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useGetGame, useUpdateGame } from "@/api/games";
-import { InputGroup } from "@/components/InputGroup";
+import InputGroup from "@/components/InputGroup";
 import { Button } from "@/components/Button";
 
 export default function ClientEdit() {
