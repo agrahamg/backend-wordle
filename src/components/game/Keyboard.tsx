@@ -64,7 +64,7 @@ function Key({
 
   return (
     <div
-      onClick={(e) =>
+      onClick={() =>
         window.dispatchEvent(new KeyboardEvent("keydown", { key: character }))
       }
       className="select-none rounded bg-gray-300 p-3 text-center capitalize"

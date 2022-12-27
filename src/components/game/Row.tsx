@@ -1,4 +1,4 @@
-import Cell from "@/components/Cell";
+import Cell from "@/components/game/Cell";
 import { memo } from "react";
 import { Loading } from "@/components/Loading";
 

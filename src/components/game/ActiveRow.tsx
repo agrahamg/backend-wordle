@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { type Database } from "@/database.types";
-import { Row } from "@/components/Row";
+import { Row } from "@/components/game/Row";
 import { useMakeGuess } from "@/api/guesses";
 
 export function ActiveRow({

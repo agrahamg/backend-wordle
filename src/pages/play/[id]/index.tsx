@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useGetInvitedGame } from "@/api/invitedGames";
 import { useGetMyGuesses } from "@/api/guesses";
-import Row from "@/components/Row";
-import { ActiveRow } from "@/components/ActiveRow";
+import Row from "@/components/game/Row";
+import { ActiveRow } from "@/components/game/ActiveRow";
 import { OtherPlayers } from "@/components/OtherPlayers";
-import { Keyboard } from "@/components/Keyboard";
+import { Keyboard } from "@/components/game/Keyboard";
 
 export default function IndexItem() {
   const router = useRouter();
