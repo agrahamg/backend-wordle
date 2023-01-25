@@ -2,6 +2,7 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/dist/client/components/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
 export function Header() {
   return (
@@ -62,6 +63,7 @@ function Login() {
   const user = useUser();
   const supabase = useSupabaseClient();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   if (!user) {
     return <Link href="/login">login</Link>;
@@ -71,8 +73,9 @@ function Login() {
     <div className="flex gap-1">
       <div>{user.email}</div>
       <button
-        onClick={() => {
-          supabase.auth.signOut();
+        onClick={async () => {
+          await supabase.auth.signOut();
+          queryClient.clear();
           router.push("/");
         }}
       >
