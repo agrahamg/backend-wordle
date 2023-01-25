@@ -28,6 +28,9 @@ export interface Database {
     Enums: {
       [_ in never]: never;
     };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
   };
   public: {
     Tables: {
@@ -90,16 +93,8 @@ export interface Database {
     Views: {
       completed_plays: {
         Row: {
-          game_id: number | null;
-          user_id: string | null;
-        };
-        Insert: {
-          game_id?: number | null;
-          user_id?: string | null;
-        };
-        Update: {
-          game_id?: number | null;
-          user_id?: string | null;
+          game_id: number;
+          user_id: string;
         };
       };
       invited_games: {
@@ -110,18 +105,16 @@ export interface Database {
           word_length: number;
         };
       };
+      totals: {
+        Row: {
+          games: number;
+          guesses: number;
+        };
+      };
       user_email: {
         Row: {
           email: string;
           id: string;
-        };
-        Insert: {
-          email?: string | null;
-          id?: string | null;
-        };
-        Update: {
-          email?: string | null;
-          id?: string | null;
         };
       };
     };
@@ -129,6 +122,9 @@ export interface Database {
       [_ in never]: never;
     };
     Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
       [_ in never]: never;
     };
   };
@@ -258,6 +254,9 @@ export interface Database {
       };
     };
     Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
       [_ in never]: never;
     };
   };
